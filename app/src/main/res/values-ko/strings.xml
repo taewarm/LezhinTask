@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">레진과제</string>
+    <string name="search">검색</string>
+    <string name="bookmark">북마크</string>
+    <string name="search_no_image">검색하는 이미지가 없습니다.</string>
+    <string name="bookmark_no_image">검색하는 북마크가 없습니다.</string>
+    <string name="search_item_text">분류: %s\n날짜: %s\n크기: %s\n출처: %s</string>
+    <string name="search_item_date_text_ko">%d년 %d월 %d일 %d:%d</string>
+    <string name="search_item_date_error">날짜 정보 에러</string>
+    <string name="confirm">확인</string>
+    <string name="cancel">취소</string>
+    <string name="edit">편집</string>
+
+</resources>

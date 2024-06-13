@@ -17,6 +17,9 @@ interface BookMarkDao {
     @Query("SELECT * FROM BookMark where search_text LIKE :searchText")
     fun getBookMarkList(searchText: String): List<BookMarkEntity>
 
+    @Query("SELECT * FROM BookMark where search_text LIKE :searchText ORDER BY id ASC LIMIT :limit OFFSET :offset")
+    fun getBookMarkListPaging(searchText: String, limit: Int, offset: Int): List<BookMarkEntity>
+
     @Query("SELECT image_url FROM BookMark where search_text LIKE :searchText AND image_url LIKE :imageUrl")
     fun getBookMarkUrl(searchText: String, imageUrl: String): String?
 

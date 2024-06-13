@@ -12,6 +12,7 @@ import com.example.domain.usecase.InsertBookMarkUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.collectLatest
@@ -26,17 +27,11 @@ class SearchViewModel @Inject constructor(
 ) : ViewModel() {
     private val _searchText = MutableStateFlow("")
     val searchText = _searchText.asStateFlow()
-    private val _progress = MutableStateFlow(false)
-    val progress = _progress.asStateFlow()
     private val _searchList = MutableStateFlow<PagingData<SearchImageItem>>(PagingData.empty())
-    val searchList = _searchList
+    val searchList: StateFlow<PagingData<SearchImageItem>> = _searchList
 
     fun updateSearchText(text: String) {
         _searchText.value = text
-    }
-
-    fun showProgress(bool: Boolean) {
-        _progress.value = bool
     }
 
     fun getSearchImage(searchText: String) {
@@ -44,7 +39,6 @@ class SearchViewModel @Inject constructor(
             getSearchImageUseCase(searchText).cachedIn(viewModelScope)
                 .catch { e -> Log.e(TAG, e.message, e) }.collectLatest {
                     _searchList.emit(it)
-                    _progress.value = false
                 }
         }
     }
@@ -64,6 +58,6 @@ class SearchViewModel @Inject constructor(
     }
 
     companion object {
-        const val TAG = "MainViewModel"
+        const val TAG = "SearchViewModel"
     }
 }
